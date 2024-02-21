@@ -1,3 +1,4 @@
+<img src="./imgs/" alt="">
 <?php
 
 /****
@@ -13,8 +14,11 @@
 
 if (!empty($_FILES['img']['tmp_name'])) {
     move_uploaded_file($_FILES['img']['tmp_name'], './imgs/' . $_FILES['img']['name']);
-    $source_path ='./imgs/' . $_FILES['img']['name'];
+
+    $source_path = "./imgs/". $_FILES['img']['name'];
+
     $type = $_FILES['img']['type'];
+
     switch ($type) {
         case 'image/jpeg':
             $source = imagecreatefromjpeg($source_path);
@@ -34,11 +38,36 @@ if (!empty($_FILES['img']['tmp_name'])) {
 
             break;
     }
-    $dst_path = './imgs/small_' . $_FILES['img']['name'];
-    $dst_width = 150;
-    $dst_height = 200;
+    $dst_path = './imgs/border_' . $_FILES['img']['name'];
+    $dst_width = 300;
+    $dst_height = 300;
     $dst_source = imagecreatetruecolor($dst_width, $dst_height);
-    imagecopyresampled($dst_source, $source, 0, 0, 0, 0, $dst_width, $dst_height, $width, $height);
+    $border = 30;
+    $white=imagecolorallocate($dst_source,255,255,255);
+    $LemonChiffon=imagecolorallocate($dst_source,255,250,205);
+    imagefill($dst_source,0,0,$white);
+    //判斷方向
+    if ($width == $height) {
+        $scale =   ($dst_width - ($border * 2))/$width;
+        $dst_x = $border;
+        $dst_y = $border;
+    } else if ($width < $height) {
+        //直向
+        $scale =  ($dst_width - ($border * 2))/ $height;
+        $new_width=$width*$scale;
+        $new_height=$height*$scale;
+        $dst_x = floor($dst_width-$new_width)/2;
+        $dst_y=$border;
+    } else {
+        //橫向
+        $scale =   ($dst_width - ($border * 2))/$width;
+        $new_width=$width*$scale;
+        $new_height=$height*$scale;
+        $dst_x=$border;
+        $dst_y = floor($dst_width-$new_height)/2;
+    }
+
+    imagecopyresampled($dst_source, $source, $dst_x, $dst_y, 0, 0, $new_width, $new_height, $width, $height);
     switch ($type) {
         case 'image/jpeg':
             imagejpeg($dst_source, $dst_path);

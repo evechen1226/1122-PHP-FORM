@@ -14,6 +14,7 @@
 <a href="image.php"><div class="types">圖形處理</div></a>
 <a href="image2.php"><div class="types">圖形處理-加邊框</div></a>
 <a href="filelist.php"><div class="types">使用php函式獲取資料夾目錄內容</div></a>
+<a href="captcha.php"><div class="types">圖型驗證碼</div></a>
 
 </body>
 </html>

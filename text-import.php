@@ -1,9 +1,17 @@
 <style>
-    table {
+    table{
         border-collapse: collapse;
     }
-
-    th {}
+    td{
+        border:1px solid #666;
+        padding:5px 12px;
+    }
+    th{
+        border:1px solid #666;
+        padding:5px 12px;
+        background-color: black;
+        color:white;
+    }
 </style>
 <?php
 
@@ -16,52 +24,6 @@
  * 6.寫入資料庫
  * 7.結束檔案
  */
-if (!empty($_FILES['text']['tmp_name'])) {
-    $filename = $_FILES['text']['name'];
-    $filesize = $_FILES['text']['size'];
-    echo "檔案上傳成功!檔名為" . $filename;
-    echo "<br> 檔案大小：" . $filesize;
-    $file = fopen($_FILES['text']['tmp_name'], 'r');
-    
-        // function text($file)
-        // {
-        //   echo "<br> 123----" . fgets($file);
-        // }
-
-    //fgets() 會一直遞增執行，不會因位置不同而重新開始，以指令出現次數為主。
-
-    //第一次執行：標題
-    $line = fgets($file);
-    echo "<br> 123---" . $line;
-
-    //第二次執行：列1661
-    // $line = fgets($file);
-    // echo "<br> 456---" . $line;
-
-    echo "<table class='table table-bordered'>";
-    $cols = explode(",", $line);
-
-    echo "<tr>";
-    foreach ($cols as $col) {
-        echo "<th> 789 ";
-        echo $col;
-        echo "</th>";
-    }
-    echo "</tr>";
-
-    while (!feof($file)) {
-        $line = fgets($file);
-        $cols = explode(",", $line);
-        echo "<tr>";
-        foreach ($cols as $col) {
-            echo "<td>";
-            echo $col;
-            echo "</td>";
-        }
-        echo "</tr>";
-    }
-    echo "</table>";
-}
 
 ?>
 <!DOCTYPE html>
@@ -98,10 +60,62 @@ if (!empty($_FILES['text']['tmp_name'])) {
 
 
     <!----讀出匯入完成的資料----->
-    <?php
+    <div class="container">
+        <?php
+        if (!empty($_FILES['text']['tmp_name'])) {
+            $filename = $_FILES['text']['name'];
+            $filesize = $_FILES['text']['size'];
+            echo "檔案上傳成功!檔名為" . $filename;
+            echo "<br> 檔案大小：" . $filesize;
+            $file = fopen($_FILES['text']['tmp_name'], 'r');
 
-    ?>
+            // function text($file)
+            // {
+            //   echo "<br> 123----" . fgets($file);
+            // }
 
+            //fgets() 會一直遞增執行，不會因位置不同而重新開始，以指令出現次數為主。
+
+            //第一次執行：標題
+            $line = fgets($file);
+            echo "<br> 123---" . $line;
+
+            //第二次執行：列1661
+            // $line = fgets($file);
+            // echo "<br> 456---" . $line;
+
+            echo "<table class='table table-striped table-hover px-3'>";
+            $cols = explode(",", $line);
+
+            echo "<thead>";
+            echo "<tr>";
+            foreach ($cols as $col) {
+                echo "<th>";
+                echo $col;
+                echo "</th>";
+            }
+            echo "</tr>";
+            echo "</thead>";
+
+            echo "<tbody>";
+            while (!feof($file)) {
+                $line = fgets($file);
+                $cols = explode(",", $line);
+                echo "<tr>";
+                foreach ($cols as $col) {
+                    echo "<td>";
+                    echo $col;
+                    echo "</td>";
+                }
+                echo "</tr>";
+            }
+            echo "</tbody>";
+
+            echo "</table>";
+        }
+
+        ?>
+    </div>
 </body>
 
 </html>

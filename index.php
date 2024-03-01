@@ -13,6 +13,9 @@
             margin-top: 20px;
             justify-content: center;
         }
+        .box{
+            margin: 10px;
+        }
     </style>
 </head>
 
@@ -25,14 +28,17 @@
                 <div class="types">檔案管理</div>
             </a>
             <a href="text-import.php">
-                <div class="types">文字檔案處理</div>
+                <div class="types">文字檔案處理-CSV</div>
             </a>
+            <a href="text-export.php">
+                <div class="types">文字檔案處理-CSV匯入資料庫</div>
+            </a>
+        </div>
+        
+        <div class="box"> <a href="image2.php">
             <a href="image.php">
                 <div class="types">圖形處理</div>
             </a>
-        </div>
-
-        <div class="box"> <a href="image2.php">
                 <div class="types">圖形處理-加邊框</div>
             </a>
             <a href="filelist.php">

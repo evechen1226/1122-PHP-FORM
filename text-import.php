@@ -22,38 +22,33 @@ if (!empty($_FILES['text']['tmp_name'])) {
     echo "檔案上傳成功!檔名為" . $filename;
     echo "<br> 檔案大小：" . $filesize;
     $file = fopen($_FILES['text']['tmp_name'], 'r');
+    
+        // function text($file)
+        // {
+        //   echo "<br> 123----" . fgets($file);
+        // }
 
-    //fgets() 會一直遞增執行，不會因位置不同而重新開始。
+    //fgets() 會一直遞增執行，不會因位置不同而重新開始，以指令出現次數為主。
+
+    //第一次執行：標題
     $line = fgets($file);
     echo "<br> 123---" . $line;
 
+    //第二次執行：列1661
     // $line = fgets($file);
     // echo "<br> 456---" . $line;
 
-    function text($file)
-    {
-      echo "<br> 123----" . fgets($file);
-    }
-
-    //下方是自已寫的
-    // while (!feof($file)) {
-    //     $line = fgets($file);
-    //     // echo "<br> " . $line;
-    //     $parsedData = str_getcsv($line, ',');
-    //     // print_r($parsedData);
-    // }
-    
     echo "<table class='table table-bordered'>";
     $cols = explode(",", $line);
 
     echo "<tr>";
     foreach ($cols as $col) {
-        echo "<th>";
+        echo "<th> 789 ";
         echo $col;
         echo "</th>";
     }
-
     echo "</tr>";
+
     while (!feof($file)) {
         $line = fgets($file);
         $cols = explode(",", $line);
@@ -66,16 +61,6 @@ if (!empty($_FILES['text']['tmp_name'])) {
         echo "</tr>";
     }
     echo "</table>";
-
-
-
-    // $csvLine = "1689,中庄里勵志幼兒園寶貝班教室,吳玉訓,838,,,,,838,188,1026,0,1026,588,1614,0.6357";
-
-    // // 使用 str_getcsv 解析 CSV 行
-    // $parsedData = str_getcsv($csvLine, ',');
-
-    // 顯示解析後的數據
-
 }
 
 ?>

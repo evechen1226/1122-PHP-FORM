@@ -1,0 +1,8 @@
+{
+    "nstc": {
+        "normal": "E:\\1122-PHP-FORM\\vendor\\dompdf\\dompdf\/lib\/fonts\/NotoSansTC-VariableFont_wght",
+        "bold": "E:\\1122-PHP-FORM\\vendor\\dompdf\\dompdf\/lib\/fonts\/NotoSansTC-VariableFont_wght",
+        "italic": "E:\\1122-PHP-FORM\\vendor\\dompdf\\dompdf\/lib\/fonts\/NotoSansTC-VariableFont_wght",
+        "bold_italic": "E:\\1122-PHP-FORM\\vendor\\dompdf\\dompdf\/lib\/fonts\/NotoSansTC-VariableFont_wght"
+    }
+}

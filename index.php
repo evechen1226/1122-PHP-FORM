@@ -33,6 +33,9 @@
             <a href="text-export.php">
                 <div class="types">文字檔案處理-CSV匯入資料庫</div>
             </a>
+            <a href="pdf-export.php">
+                <div class="types">檔案處理-PDF輸出</div>
+            </a>
         </div>
         
         <div class="box"> <a href="image2.php">
